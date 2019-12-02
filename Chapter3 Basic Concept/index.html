@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Concept</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function print(params) {
+        console.log(params)
+    }
+    function test() {
+        // var message = "hi" 
+        message = "hi" //这里不加var 的话，message会在test()执行后变成global变量
+    }
+    test()
+    console.log(message)
+    console.log(typeof null) //null 是空对象，所以此时返回是一个object
+
+    let t
+    console.log(t)  //声明了t，但是未赋初始值，这时候t是undifined
+    print(typeof t) //typeof 一个没有赋初始值的变量会返回undefined
+    print(typeof aaa)//typeof 一个没有定义过的变量也会返回undefined
+
+
+    print(NaN === NaN) //返回false，因为NaN不等于任何值，包括NaN
+    print(NaN / 10) //返回NaN，NaN参与的任何操作返回都是NaNß
+
+    print(isNaN(NaN)) //isNaN返回判断一个值是不是NaN (Not a Number)
+    print(isNaN("12")) //返回false，因为"12"可以被转换成数值
+    print(isNaN("aa")) //返回true，因为"aa"不能被转换成数值
+    print(isNaN(undefined)) //返回true, undefined不能被转换成数值
+    print(isNaN(null)) //返回false, null可以被转换成数值
+    //isNaN方法可以适用于对象，先调用对象的valueOf方法，然后检测返回值是否可以转换成数值，如果不能，则基于返回值调用toString方法，再测试返回值
+
+    print(Number(undefined))    //NaN
+    print(parseInt(undefined))  //NaN
+
+
+    console.log("Number(true)", Number(true))    //1
+    console.log("parseInt(true)", parseInt(true))  //NaN
+
+    print(Number(null))    //0
+    print(parseInt(null))  //NaN
+
+    print(Number(''))    //0
+    print(parseInt(''))  //NaN
+
+    print(parseInt("070", 10)) //第二个参数表示10进制，不会被当成8进制
+
+
+</script>
+
+</html>
