@@ -23,7 +23,7 @@
     console.log(message)
     const basicTypes_1 = () => {
         console.log(typeof null) //null 是空对象，所以此时返回是一个object
-
+        console.log(typeof undefined) //返回undefined
         let t
         console.log(t)  //声明了t，但是未赋初始值，这时候t是undifined
         print(typeof t) //typeof 一个没有赋初始值的变量会返回undefined
@@ -31,7 +31,7 @@
 
 
         print(NaN === NaN) //返回false，因为NaN不等于任何值，包括NaN
-        print(NaN / 10) //返回NaN，NaN参与的任何操作返回都是NaNß
+        print(NaN / 10) //返回NaN，NaN参与的任何操作返回都是NaN
 
         print(isNaN(NaN)) //isNaN返回判断一个值是不是NaN (Not a Number)
         print(isNaN("12")) //返回false，因为"12"可以被转换成数值
@@ -57,6 +57,63 @@
     }
     // basicTypes_1()
 
+    const basicTypes_String = () => {
+        const a = "abc"
+        a.toString()    //字符串的toString返回字符串的一个副本
+        const b = true
+        print(b.toString()) //bool有toString()方法
+        //null和undefined没有toString()方法
+        const num = 10
+        //toString()可以带参数，参数表示转成某个进制输出
+        print(num.toString(2))  //把10转成2进制字符输出
+        print(num.toString(16)) //把10转成16进制字符输出
+        //String()可以把任意值转成字符串, String()方法先使用toString方法，如果成功就返回toString的值，如果不成功就返回字面量
+        //在不知道是否会返回undefined或null时，使用String()
+        print(String(null)) //输出”null“
+        print(String(undefined))//输出undefined
+
+        let t = "1"
+        print(++t) //输出2，一元操作符++或者—作用于有效数字字符串时，会先把字符串转换成数字，然后进行加减操作，字符串变量变成数值变量
+        let p = "abc"
+        print(++p) //输出NaN,字符串变量变成数值变量
+        let k = true
+        print(++k) //输出2,先把true转化成1在计算
+
+    }
+    // basicTypes_String()
+
+    const basicTypes_Infinity = () => {
+        print(Infinity * 0) //NaN
+        print(Infinity * 5) //Infinity
+        print(Infinity * Infinity) //Infinity
+
+        print(Infinity / Infinity) //NaN
+        print(0 / 0) //NaN
+        print(5 / 0) //Infinity
+        print(Infinity / 5) //Infinity
+
+        print(Infinity % 5) //NaN
+        print(5 % 0) //NaN
+        print(Infinity % Infinity) //NaN
+        print(5 % Infinity) //5
+
+        print(Infinity + Infinity) //Infinity
+        print(Infinity + -Infinity) //NaN
+
+        print(Infinity - Infinity) //NaN
+        print(-Infinity - -Infinity) //NaN
+        print(Infinity - -Infinity) //Infinity
+        print(-Infinity - Infinity) //-Infinity
+
+    }
+    // basicTypes_Infinity()
+
+    const basicTypes_equal = () =>{
+        // 相等判断== 会先转换再判断，不同类型同样的值也判定为相等
+        // 全等判断=== 不会转换类型，类型不同一定返回false
+        print( null == undefined) //true ，因为是类似值
+        print(null === undefined) //false, 因为不同类型
+    }
 
 </script>
 
