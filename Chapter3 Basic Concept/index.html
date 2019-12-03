@@ -115,6 +115,21 @@
         print(null === undefined) //false, 因为不同类型
     }
 
+    const basiTypes_switch = () =>{
+        //如果要做数值区间判断，需要如下写
+        const t = 10
+        switch (true) {
+            case 10<t && t<= 20:
+                print('A')
+                break;
+            case 20<t && t<=30:
+                print('B')
+                break;
+            default:
+                break;
+        }
+    }
+
 </script>
 
 </html>
