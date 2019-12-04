@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+var colors = new Array(3)
+//Aarry可以省略 new 关键字
+var array = Array(8)
+
+array = [1,2,3]
+//array的length属性不是只读的
+//可以通过给length赋值移除数组末尾的项或者向数组添加项
+array.length=2 //3被移除了
+
+//给数组添加新项，新添加的项是undefined
+array.length=3
+
+//利用length给数组末尾添加项
+array[array.length]=5
+array[array.length]=6
+
+//array[2]现在是undefined
+
+//把值放在超出数组长度的位置，数组的长度会变成最后索引+1
+array[99]= 99 //array.length = 100 
+
+//array的sort方法会先把数组所有的项调用toString()转成字符串，然后再排序，所以sort()不是一个很好的方案
+array = [1,5,15]
+array.sort() //由于字符串5在15的后面，所以排序结果是[1,15,5
+
+//数组删除
+var removed = array.splice(2,1) //删除第3项
+var added = array.splice(1,0,7,8) //从位置1开始插入两项
+var modified = array.splice(1,1,5,6) //插入两项，删除一项
+
+
+</script>
+</html>
