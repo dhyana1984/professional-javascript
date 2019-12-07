@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//定义函数
+var sum = function(num1,num2){
+    return num1+num2
+}
+//不推荐使用构造函数的方式定义函数，因为会解析2次，影响性能
+var sum2 = new Function("num1", "num2","return num1+num2")
+
+//根据对象中的字段排序方法
+function createComparisonFunction(propertyName){
+    return function(object1, object2){
+        var value1 = object1[propertyName]
+        var value2 = object2[propertyName]
+        if(value1<value2){
+            return -1
+        }else if(value1>value2){
+            return 1
+        }else{
+            return 0
+        }
+    }
+}
+
+//使用
+var data=[{name:"张三",age:21},{name:"李四",age:25}]
+data.sort(createComparisonFunction("age"))
+
+function factorial(num){
+    return num<=1 ? 1: num * arguments.callee(num-1) //arguments.callee 指向调用arguments的函数，使用arguments.callee可以解绑调用的函数
+}
+
+
+function applySum(num1,num2){
+    //apply函数传入第一个参数是作用域，第二个参数是参数数组或者arguments对象
+    return sum.apply(this,arguments)
+    //return sum.apply(this,[num1,num2])
+}
+
+function callSum(num1,num2){
+    //call函数第一个参数是作用域，后面需要把各个参数列出来
+    return sum.call(this,num1,num2)
+}
+
+window.color = "red"
+var o = {color :"blue"}
+
+function sayColor(){
+    console.log(this.color)
+}
+sayColor()
+//此时call()方法传入参数的目的是改变函数的作用域，不同的作用域中调用sayColor的this结果是不一样的
+sayColor.call(this)
+sayColor.call(o)
+
+</script>
+</html>

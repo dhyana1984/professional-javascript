@@ -10,6 +10,11 @@
     
 </body>
 <script>
-    var someDate = new Date(Date.parse("May 25,2004"))
+    //下面两句是等价的
+    var someDate = new Date(Date.parse("2019-01-01"))
+    var a = new Date("2019-01-01")  //实际在后台，还是会调用Date.parse()
+    a.valueOf() //返回a时间的毫秒总数，可以用来比较时间
+    
+
 </script>
 </html>
