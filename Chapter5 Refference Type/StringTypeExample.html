@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var stringValue = "Hello world"
+    console.log(stringValue.slice(3)) //"lo World"
+    console.log(stringValue.substring(3))//"lo World"
+    console.log(stringValue.substr(3))//"lo World"
+
+    //从第4个字符到第7个字符
+    console.log(stringValue.slice(3, 7)) //"lo W"
+    console.log(stringValue.substring(3, 7))//"lo W"
+
+    //从第4个字符开始返回7个字符
+    console.log(stringValue.substr(3, 7))//"lo World"
+
+    console.log(stringValue.slice(-3)) //"rld" 等价于stringValue.slice(stringValue.length-3)
+    console.log(stringValue.substring(-3))//"Hello World" 等价于stringValue.substring(0)，substring会把负数全部转化成0
+    console.log(stringValue.substr(-3))//"rld" 等价于stringValue.slice(stringValue.length-3)
+
+
+    console.log(stringValue.slice(3, -4)) //"lo W" 等价于stringValue.slice(3, stringValue.length-4)
+    console.log(stringValue.substring(3, -4))//"hel" 等价于stringValue.substring(3,0), 由于substring总是从小的参数开始，所以等价于stringValue.substring(0,3)
+
+    console.log(stringValue.substr(3, -4))//"" 等价于stringValue.substr(3,0)，因此返回0个字符，所以返回""
+
+    //循环查找字符串中的字符
+    const findCharInString = (char) => {
+        const str = "Lore ipsum dolor sit amet, consectetur adipisicing elit"
+        let position = []
+        let pos = str.indexOf(char)
+        while(pos > -1){
+            position.push(pos)
+            //从pod+1开始向后查找
+            pos = str.indexOf(char,pos+1)
+        }
+        return position
+}
+
+
+</script>
+
+</html>
