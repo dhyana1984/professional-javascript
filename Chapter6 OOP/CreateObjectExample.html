@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//自定义构造函数创建对象
+function Person(name,age,job) {
+    this.name = name
+    this.age = age
+    this.job = job
+    this.sayName = () => console.log(this.name)
+}
+
+const person1 = new Person("AAA",29,"Work1")
+const person2 = new Person("BBB",30,"Work2")
+
+
+//person1和person2的构造函数属性都指向Person
+console.log(person1.constructor) 
+console.log(person2.constructor)
+
+</script>
+</html>

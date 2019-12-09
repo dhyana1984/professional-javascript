@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let person = {}
+
+    //Object.defineProperty方法用来定义对象的属性的属性
+    Object.defineProperty(person, "name", {
+        writable: false,         //只读
+        configurable: false,     //delete person.name无效，不能从对象中删除该属性,一旦设置为false就不能再变回可配置了 
+        value: "Nicholas"
+    })
+
+    Object.defineProperty(person, "name", {
+        writable: false,         //configurable设置为false以后只能修改writable属性，修改其他属性都会报错
+        //configurable:true,     //报错,Cannot redefine property: name
+    })
+
+    const book = {
+        _year: 2004, //前面加_表示只能通过对象方法访问的属性
+        edition: 1
+    }
+
+    //定义book对象year访问器属性
+    Object.defineProperty(book, "year", {
+        get: function () {
+            return this._year
+        },
+        set: function (newValue) {
+            if (newValue > 2004) {
+                this._year = newValue
+                this.edition += newValue - 2004
+            }
+        }
+    })
+
+</script>
+
+</html>
