@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PrivilegedMethodExample</title>
+</head>
+<body>
+    
+</body>
+<script>
+// function Person(name) {
+//     //在构造函数内部定义特权方法，因为特权方法作为闭包有权访问在构造函数中定义的所有变量和函数
+//     //构造函数模式的缺点是针对每个实例都会创建同样一组新方法
+//     this.getName = function () {
+//         return name
+//     }
+//     this.setName = function (value) {
+//         name = value
+//     }
+// }
+
+// var person = new Person("Tom")
+// console.log(person.getName())
+// person.setName("Bob")
+// console.log(person.getName())
+
+(function () {
+    var name=""
+    //没有var，使用函数表达式，创建了一个Person全局变量构造函数
+    Person = function (value) {
+        name = value
+    }
+    Person.prototype.getName = function () {
+        return name
+    }
+    Person.prototype.setName = function (value) {
+        name = value
+    }
+})()
+
+var person1 = new Person("Tom")
+console.log(person1.getName())
+person1.setName("Bob")
+console.log(person1.getName())
+
+//私有变量由实例共享，所以其中一个改变，所有私有变量全部改变
+var person2 = new Person("Jack")
+console.log(person1.getName())  //Jack
+console.log(person2.getName())  //Jack
+
+
+//模块模式，在需要对单例进行某些初始化，同时又需要维护其私有变量时是非常有用的
+var application = function () {
+    var components = []
+    //初始化
+    components.push(new Person("Tim"))
+    //公共
+    return {
+        getComponentCount : function () {
+            return components.length
+        },
+        registerComponent : function (component) {
+            if(typeof component === "object"){
+                components.push(component)
+            }
+        }
+    }
+}
+
+
+</script>
+</html>
