@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WindowSizeExample</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //获取页面视口的大小
+var pageWith = window.innerWidth, pageHeight = window.innerHeight
+
+if(typeof pageWith != "number"){
+    if(document.compatMode == "CSS1Compat"){
+        pageWith = document.documentElement.clientWidth
+        pageHeight = document.documentElement.clientHeight
+    }else{
+        pageWith = document.body.clientWidth
+        pageHeight = document.body.clientHeight
+    }
+}
+</script>
+</html>
