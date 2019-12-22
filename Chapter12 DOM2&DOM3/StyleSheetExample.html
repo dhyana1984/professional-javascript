@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StyleSheetExample</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+function getStyleSheet(element) {
+    return element.sheet || element.styleSheet  //styleSheet  是IE专有
+}
+
+//获取第一个<link>元素引入的样式表
+var link = document.getElementsByTagName("link")[0]
+var sheet = getStyleSheet(link)
+
+//跨浏览器插入css规则
+function insertRule(sheet, selectorText, cssText, position) {
+    if(sheet.insertRule){
+        sheet.insertRule(selectorText+"{" +cssText +"}",position)
+    }else if(sheet.addRule){
+        sheet.addRule(selectorText, cssText, position)  //addRule是IE8及之前的方法，addRule()最多可以添加4095条样式
+    }
+}
+
+//跨浏览器删除规则函数
+function deleteRule(sheet, index) {
+    if(sheet.deleteRule){
+        sheet.deleteRule(index)
+    }else if(sheet.removeRule){
+        sheet.removeRule(index)     //removeRule是IE特有
+    }
+}
+</script>
+</html>
