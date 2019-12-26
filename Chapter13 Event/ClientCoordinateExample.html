@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ClientCoordinateExample</title>
+</head>
+
+<body>
+    <div id="myDiv">
+aaaa
+    </div>
+</body>
+<script src="EventUtils.js" type="text/javascript"></script>
+<script>
+    var div = document.getElementById("myDiv")
+    EventUtils.addHandler(div, "click", (event) => {
+        event = EventUtils.getEvent(event)
+        //获取客户端坐标信息，是视口的位置，不是页面的位置
+        console.log(`Client Coordinates: ${event.clientX}, ${event.clientY}`)
+        //页面坐标位置，在页面没有滚动的情况下和clientX, clientY相等
+        console.log(`Client Coordinates: ${event.pageX}, ${event.pageY}`)
+        //屏幕坐标信息
+        console.log(`Client Coordinates: ${event.screenX}, ${event.screenY}`)
+    })
+</script>
+
+</html>

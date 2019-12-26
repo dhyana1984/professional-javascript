@@ -43,5 +43,59 @@ var EventUtils = {
         } else {
             event.cancelBubble = true   //IE 阻止冒泡，因为IE没有捕获，所以只能阻止冒泡
         }
+    },
+
+    //获取相关元素,mouveout和moveover事件用
+    getRelatedTarget: (event) => {
+        if (event.relatedTarget) {
+            return event.relatedTarget
+        } else if (event.toElement) {
+            return event.toElement
+        } else if (event.fromElement) {
+            return event.fromElement
+        } else {
+            return null
+        }
+    },
+
+    //获取mousedown和mouseup事件的event的button属性
+    getButton: (event) => {
+        //如果没有MouseEvents，就是IE
+        if (document.implementation.hasFeature("MouseEvents", "2.0")) {
+            return event.button
+        } else {
+            switch (event.button) {
+                case o:
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                    return 0
+                case 2:
+                case 6:
+                    return 2
+                case 4:
+                    return 1
+            }
+        }
+    },
+
+    //获取鼠标滚轮滚动数值方法
+    getWheelDelta: function(event){
+        if (event.wheelDelta){
+            return (client.engine.opera && client.engine.opera < 9.5 ? -event.wheelDelta : event.wheelDelta);
+        } else {
+            return -event.detail * 40; //支持firefox，因为firefox滚动单位是3
+        }
+    },
+
+    getCharCode: (event) =>{
+        if(typeof event.charCode == "number"){
+            return event.charCode
+        }else{
+            return event.keyCode
+        }
     }
+
+
 }
