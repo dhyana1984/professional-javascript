@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LoadEventExample</title>
+   
+</head>
+<body>
+    
+</body>
+<script src="EventUtils.js" type="text/javascript" ></script>
+<script>
+    //首先为window指定onload，因为必须确定页面已经加载完毕
+    EventUtils.addHandler(window, "load", ()=>{
+        var image = document.createElement("img")
+        EventUtils.addHandler(image, "load",(event) =>{
+            event = EventUtils.getEvent(event)
+            console.log(EventUtils.getTarget(event).src)
+        })
+        document.body.appendChild(image)
+        image.src = "aa.jpeg"
+    })
+</script>
+</html>
