@@ -14,4 +14,26 @@
         <li><a href="http://www.yahoo.com">Yahoo!</a></li>
     </ul>
 </body>
+<script src="./EventUtils.js">
+</script>
+<script>
+EventUtils.addHandler(window,"load",(event) =>{
+    var div = document.getElementById("myDiv")
+    //对div添加contextmenu事件处理程序
+    EventUtils.addHandler(div, "contextmenu",(event)=>{
+        event = EventUtils.getEvent(event)
+        EventUtils.preventDefault(event)    //取消默认行为，不显示默认上下文菜单
+        var menu = document.getElementById("myMenu")
+        //确定<ul>的位置
+        menu.style.left = event.clientX +"px"
+        menu.style.top = event.clientY +"px"
+        //显示<ul>作为上下文菜单
+        menu.style.visibility = "visible"
+    })
+    //通过设置document的单击事件来隐藏<ul>
+    EventUtils.addHandler(document,"click",(event) =>{
+        document.getElementById("myMenu").style.visibility = "hidden"
+    })
+})
+</script>
 </html>
