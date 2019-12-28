@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EventDelegationExample</title>
+</head>
+<body>
+    <ul id="myLinks">
+        <li id="goSomewhere">Go somewhere</li>
+        <li id="doSomething">Do something</li>
+        <li id="sayHi">Say hi</li>
+    </ul>
+</body>
+<script src="./EventUtils.js"></script>
+<script>
+var list = document.getElementById("myLinks")
+
+//利用委托，在DOM树最高层添加事件处理程序
+EventUtils.addHandler(list, "click",(event) =>{
+    event = EventUtils.getEvent(event)
+    var target = EventUtils.getTarget(event)
+    //由于click会冒泡，所以通过判断id决定适当操作
+    switch (target.id) {
+        case "doSomething":
+            document.title = "I changed the title"
+            break;
+        case "goSomewhere":
+            location.href = "http://www.baidu.com"
+            break;
+        case "sayHi":
+            console.log("hi")
+            break;
+        default:
+            break;
+    }
+})
+</script>
+</html>
