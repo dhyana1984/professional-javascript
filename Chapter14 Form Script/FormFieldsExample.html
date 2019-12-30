@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FormFieldsExample</title>
+</head>
+<body>
+ <form method="POST" id="myForm">
+    <ul>
+        <li><input type="radio" name="color" value="red"/></li>
+        <li><input type="radio" name="color" value="grenn"/></li>
+        <li><input type="radio" name="color" value="blue"/></li>
+    </ul>
+ </form>
+</body>
+<script>
+var form = document.getElementById("myForm")
+var colorFields = form.elements["color"]    //colorFields是一个NodeList
+console.log(colorFields.length)    //3
+var firstColorField = colorFields[0]    //colorFields的第一个子元素
+var firstFormField = form.elements[0]   //form的第一个字段
+console.log(firstColorField === firstFormField)     //true
+
+</script>
+</html>
