@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PreventMutipleSubmitExample</title>
+</head>
+
+<body>
+    <form method="POST" id="myForm">
+        <ul>
+            <li><input type="radio" name="color" value="red"/></li>
+            <li><input type="radio" name="color" value="grenn"/></li>
+            <li><input type="radio" name="color" value="blue"/></li>
+        </ul>
+        <input type="submit" name="submit-btn"/>
+     </form>
+</body>
+<script src="./EventUtil.js"></script>
+<script>
+    //在form的submit事件上禁用submit按钮，防止二次提交
+    //不能再onclick上禁用，因为有些浏览器的submit方法在onclick之后，禁用后就无法提交了
+    var form = document.getElementById("myForm")
+    EventUtil.addHandler(form, "submit",(event)=>{
+        var target = EventUtil.getTarget(event)
+        var btn = target.elements["submit-btn"]
+        btn.disabled = true
+    })
+</script>
+
+</html>

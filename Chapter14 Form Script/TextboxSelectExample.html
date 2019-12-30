@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TextboxSelectExample</title>
+</head>
+<body>
+    
+</body>
+<script src="./EventUtil.js"></script>
+<script>
+//文本框获得焦点以后全选文本
+EventUtil.addHandler(textbox,"focus",(event) =>{
+    event = EventUtil.getEvent(event)
+    var target = EventUtil.getTarget(event)
+    target.select()
+})
+</script>
+</html>
