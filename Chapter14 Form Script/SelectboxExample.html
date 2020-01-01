@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SelectboxExample</title>
+</head>
+
+<body>
+    <form method="post" action="javascript:alert('Form submitted!')" id="myForm">
+        <div>
+            <label for="selLocation">Where do you want to live?</label>
+            <select name="location" id="selLocation">
+                <option value="Sunnyvale, CA">Sunnyvale</option>
+                <option value="Los Angeles, CA">Los Angeles</option>
+                <option value="Mountain View, CA">Mountain View</option>
+                <option value="">China</option>
+                <option>Australia</option>
+            </select>
+        </div>
+        <div>
+            <input type="button" value="Select first option" id="btnFirst" />
+            <input type="button" value="Select second option" id="btnSecond" />
+            <input type="button" value="Get selected option" id="btnSelected" />
+        </div>
+    </form>
+</body>
+<script>
+    selectbox = document.getElementById("selLocation");
+    //使用DOM方法添加选项
+    var newOption1 = document.createElement("option")
+    newOption.appendChild(document.createTextNode("option text"))
+    newOption.setAttribute("value", "Option value")
+
+    //使用option构造函数
+    var newOption2 = new Option("Option text", "Option value")
+    selectbox.appendChild(newOption2)
+
+    //使用选择框的add方法
+    var newOption3 = new Option("Option text", "Option value")
+    selectbox.add(newOption3, undefined)
+
+
+</script>
+
+</html>
