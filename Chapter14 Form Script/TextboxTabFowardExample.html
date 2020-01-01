@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TextboxTabFowardExample</title>
 </head>
+
 <body>
     <form method="post" action="http://www.nczonline.net">
         <p>Enter your telephone number:</p>
-        <input type="text" name="tel1" id="txtTel1" size="3" maxlength="3" >
-        <input type="text" name="tel2" id="txtTel2" size="3" maxlength="3" >
-        <input type="text" name="tel3" id="txtTel3" size="4" maxlength="4" >
+        <input type="text" name="tel1" id="txtTel1" size="3" maxlength="3">
+        <input type="text" name="tel2" id="txtTel2" size="3" maxlength="3">
+        <input type="text" name="tel3" id="txtTel3" size="4" maxlength="4">
 
         <input type="submit" value="Submit">
     </form>
 </body>
+<script src="./EventUtil.js"></script>
+<script>
+    (() => {
+        const tabForward = (event) => {
+            event = EventUtil.getEvent(event)
+            const target = EventUtil.getTarget(event)
+            if (target.value.length == target.maxLength) {
+                const form = target.form
+                for (let i = 0, len = form.elements.length; i < len; i++) {
+                    //kepress触发的textbox
+                    if (form.elements[i] == target) {
+                        //如果下一个textbox存在的话
+                        if (form.elements[i + 1]) {
+                            //焦点focus到下一个textbox
+                            form.elements[i + 1].focus()
+                        }
+                    }
+                }
+            }
+        }
+        var textbox1 = document.getElementById("txtTel1"),
+            textbox2 = document.getElementById("txtTel2"),
+            textbox3 = document.getElementById("txtTel3");
+            EventUtil.addHandler(textbox1, "keyup", tabForward)
+            EventUtil.addHandler(textbox2, "keyup", tabForward)
+            EventUtil.addHandler(textbox3, "keyup", tabForward)
+    })()
+
+
+
+</script>
+
 </html>
