@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ThrowingErrorsExample</title>
+</head>
+<body>
+    
+</body>
+<script>
+//利用原型链通过继承Error来创建自定义错误类型
+function Customer(message){
+    this.name = "CustomerError"
+    this.message = message
+}
+
+Customer.prototype = new Error()
+throw new Customer("My message")
+</script>
+</html>
