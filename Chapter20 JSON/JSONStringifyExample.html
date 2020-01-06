@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSONStringifyExample</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var book = {
+        "title": "Professional JavaScript",
+        "authors": ["AAA","BBB"],
+        edition: 3,
+        year: 2011,
+        //如果加了toJSON方法，则执行stringify时会执行toJSON方法得到返回值作为stringify的返回值
+        // toJSON:function(){
+        //     return this.title
+        // }
+    }
+//stringify第二个参数如果是数组，则是一个过滤器，让序列化的结果只包含数组里面的属性
+var jsonText = JSON.stringify(book,["title","authors"])
+
+//stringify第二个参数如果是函数，则是一个处理函数，函数参数是键和值
+//如果不要某个属性，则返回undefine，可以在返回时处理返回值，该返回值就是对象每个属性的值
+var jsonText2 = JSON.stringify(book, function (key,value) {
+    switch (key) {
+        case "authors":
+            return value.join(", ")
+            break;
+        case "year":
+            return 5000
+        case "edition":
+            return undefined
+        default:
+            return value
+    }
+})
+
+//stringify的第三个参数代表转成json字符串后的每行空格缩进，最大值是10，超过10都按10算
+//var jsonText3 = JSON.stringify(book, null, "2")
+//如果第三个参数不是数字而是字符，则作为缩进字符，如下，长度也不超过10
+var jsonText3 = JSON.stringify(book, null, "--")
+
+var jsonText4 = JSON.stringify(book)
+console.log(jsonText)
+console.log(jsonText2)
+console.log(jsonText3)
+console.log(jsonText4)
+
+</script>
+
+</html>
