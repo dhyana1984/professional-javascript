@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IndexedDBExample</title>
+</head>
+<body>
+    
+</body>
+<script>
+var request, database
+request = indexedDB.open("admin")
+request.onerror = (event) =>{
+    console.log(`Something went wrong while try to open: ${event.target.errorCode}`)
+}
+request.onsuccess =(event) =>{
+    database = event.target.result
+    console.log('Open IndexedDB successfully!')
+}
+</script>
+</html>
