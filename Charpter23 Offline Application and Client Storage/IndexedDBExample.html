@@ -1,23 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>IndexedDBExample</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
-var request, database
-request = indexedDB.open("admin")
-request.onerror = (event) =>{
-    console.log(`Something went wrong while try to open: ${event.target.errorCode}`)
-}
-request.onsuccess =(event) =>{
-    database = event.target.result
-    console.log('Open IndexedDB successfully!')
-}
+    (function(){
+    
+    var indexedDB = window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB,
+        request,
+        store,
+        database,
+        users = [
+            {
+                username: "007",
+                firstName: "James",
+                lastName: "Bond",
+                password: "foo"
+            },
+            {
+                username: "ace",
+                firstName: "John",
+                lastName: "Smith",
+                password: "bar"
+            }                
+        ];
+        
+    request = indexedDB.open("example");
+    request.onerror = function(event){
+        alert("Something bad happened while trying to open: " + event.target.errorCode);
+    };
+    request.onsuccess = function(event){
+        database = event.target.result;
+        initializeDatabase();
+    };    
+
+    function initializeDatabase(){
+        if (database.version != "1.0"){
+            request = database.setVersion("1.0");
+            request.onerror = function(event){
+                alert("Something bad happened while trying to set version: " + event.target.errorCode);
+            };
+            request.onsuccess = function(event){
+                //createObjectStore写在 database.setVersion的onsuccses回调里面
+                store = database.createObjectStore("users", { keyPath: "username" });
+                var i=0,
+                    len = users.length;
+
+                while(i < len){
+                    store.add(users[i++]);
+                }
+
+                alert("Database initialized for first time. Database name: " + database.name + ", Version: " + database.version);
+            };
+        } else {
+            alert("Database already initialized. Database name: " + database.name + ", Version: " + database.version);
+            request = database.transaction("users").objectStore("users").get("007");
+            request.onsuccess = function(event){
+                alert(event.target.result.firstName);
+            };
+        }
+    }
+
+})();
+
+
+
 </script>
+
 </html>
